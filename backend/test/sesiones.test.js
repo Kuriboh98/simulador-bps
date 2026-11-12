@@ -50,7 +50,10 @@ beforeEach(async () => {
         tramite: tramite._id,
         datos: {
             captchaEsperado: 'JFNH4',
-            resultado: { fecha: '2 de octubre de 2026', lugar: 'tu red de cobranza habitual' },
+            resultado: {
+                titulo: '¡Muy bien! Lo logró',
+                campos: [{ etiqueta: 'Cobra a partir del', valor: '2 de octubre de 2026' }],
+            },
         },
     });
 
@@ -84,7 +87,8 @@ describe('POST /api/sesiones/:id/validar (CA1–CA4)', () => {
         expect(res.status).toBe(200);
         expect(res.body.ok).toBe(true);
         expect(res.body.siguientePaso).toBe(3); // el paso de resultado
-        expect(res.body.resultado.fecha).toBe('2 de octubre de 2026');
+        expect(res.body.resultado.titulo).toBe('¡Muy bien! Lo logró');
+        expect(res.body.resultado.campos[0].valor).toBe('2 de octubre de 2026');
 
         // La sesión queda marcada como completada.
         const sesion = await Sesion.findById(sesionId);
@@ -139,5 +143,34 @@ describe('POST /api/sesiones/:id/validar (CA1–CA4)', () => {
             .post(`/api/sesiones/${idInventado}/validar`)
             .send({ campos: { documento: '41234567', captcha: 'JFNH4' } });
         expect(res.status).toBe(404);
+    });
+});
+
+describe('POST /api/sesiones/:id/validar (trámite sin captcha: agendarse)', () => {
+    it('avanza al resultado sin pedir documento ni código', async () => {
+        const tramite = await Tramite.create({ nombre: 'Agendarse para una consulta' });
+        await Paso.insertMany([
+            { tramite: tramite._id, orden: 1, titulo: 'Entrar', tipo: 'navegacion' },
+            { tramite: tramite._id, orden: 2, titulo: 'Elegir', tipo: 'agenda' },
+            { tramite: tramite._id, orden: 3, titulo: 'Confirmación', tipo: 'resultado' },
+        ]);
+        await Escenario.create({
+            tramite: tramite._id,
+            datos: { resultado: { titulo: '¡Listo! Quedó agendado', campos: [] } },
+        });
+
+        const nueva = await request(app)
+            .post('/api/sesiones')
+            .send({ tramiteId: tramite._id.toString() });
+        const res = await request(app)
+            .post(`/api/sesiones/${nueva.body._id}/validar`)
+            .send({ campos: { dia: 'Martes 18/11', hora: '10:30' } });
+
+        expect(res.status).toBe(200);
+        expect(res.body.ok).toBe(true);
+        expect(res.body.siguientePaso).toBe(3);
+
+        const sesion = await Sesion.findById(nueva.body._id);
+        expect(sesion.completada).toBe(true);
     });
 });

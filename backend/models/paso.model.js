@@ -36,12 +36,13 @@ const pasoSchema = new mongoose.Schema(
         orden: { type: Number, required: true },
         titulo: { type: String, required: true },
         instruccion: String,
-        tipo: { type: String, enum: ['navegacion', 'formulario', 'resultado'], required: true },
+        tipo: { type: String, enum: ['navegacion', 'formulario', 'agenda', 'resultado'], required: true },
         ayudaTexto: String,
         ayudaAudio: String,
         imagenFondo: String,
         hotspots: [hotspotSchema],
         campos: [campoSchema],
+        opciones: mongoose.Schema.Types.Mixed,
         boton: new mongoose.Schema(
             { x: Number, y: Number, w: Number, h: Number, etiqueta: String },
             { _id: false }

@@ -40,24 +40,29 @@ export async function validar(id, campos = {}) {
     const escenario = await Escenario.findById(sesion.escenario);
     if (!escenario) throw httpError(404, 'Escenario no encontrado');
 
-    const documento = String(campos.documento ?? '').trim();
-    const captcha = String(campos.captcha ?? '').trim();
-
     // CA4: todo intento se registra, con o sin error.
     sesion.intentos += 1;
 
-    // CA2: el documento se acepta solo con números (sin puntos, guiones ni letras).
-    if (!/^\d+$/.test(documento)) {
-        sesion.errores += 1;
-        await sesion.save();
-        return { ok: false, campo: 'documento', mensaje: MENSAJES.documento };
-    }
+    // Los trámites con formulario de CI + código (consultar cobro, constancia) validan
+    // documento y captcha. Los que no tienen captcha en el escenario (agendarse) se saltan
+    // esta parte: alcanza con que la persona haya elegido una opción.
+    if (escenario.datos.captchaEsperado) {
+        const documento = String(campos.documento ?? '').trim();
+        const captcha = String(campos.captcha ?? '').trim();
 
-    // CA3: el código de verificación debe coincidir con el del escenario.
-    if (captcha !== escenario.datos.captchaEsperado) {
-        sesion.errores += 1;
-        await sesion.save();
-        return { ok: false, campo: 'captcha', mensaje: MENSAJES.captcha };
+        // CA2: el documento se acepta solo con números (sin puntos, guiones ni letras).
+        if (!/^\d+$/.test(documento)) {
+            sesion.errores += 1;
+            await sesion.save();
+            return { ok: false, campo: 'documento', mensaje: MENSAJES.documento };
+        }
+
+        // CA3: el código de verificación debe coincidir con el del escenario.
+        if (captcha !== escenario.datos.captchaEsperado) {
+            sesion.errores += 1;
+            await sesion.save();
+            return { ok: false, campo: 'captcha', mensaje: MENSAJES.captcha };
+        }
     }
 
     // CA1 (éxito): avanza al paso de resultado y muestra la fecha/lugar de cobro.
