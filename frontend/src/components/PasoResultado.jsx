@@ -3,9 +3,6 @@ export default function PasoResultado({ resultado, pasos, onRepetir, onMenu }) {
 
     return (
         <section className="paso">
-            <div className="resultado-check" aria-hidden="true">
-                {resultado?.icono || '✅'}
-            </div>
             <h1 className="paso-titulo centrado">{resultado?.titulo || '¡Muy bien! Lo logró'}</h1>
 
             {campos.length > 0 && (

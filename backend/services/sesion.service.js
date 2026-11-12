@@ -46,7 +46,14 @@ export async function validar(id, campos = {}) {
     // Los trámites con formulario de CI + código (consultar cobro, constancia) validan
     // documento y captcha. Los que no tienen captcha en el escenario (agendarse) se saltan
     // esta parte: alcanza con que la persona haya elegido una opción.
-    if (escenario.datos.captchaEsperado) {
+    // Cada vista (celular / computadora) usa su propia captura, y cada captura trae su
+    // propio código de seguridad "congelado". Aceptamos cualquiera de los códigos válidos
+    // del escenario, así la persona practica con la vista que tenga elegida.
+    const codigosValidos = [escenario.datos.captchaEsperado, escenario.datos.captchaEsperadoWeb].filter(
+        Boolean
+    );
+
+    if (codigosValidos.length) {
         const documento = String(campos.documento ?? '').trim();
         const captcha = String(campos.captcha ?? '').trim();
 
@@ -57,8 +64,8 @@ export async function validar(id, campos = {}) {
             return { ok: false, campo: 'documento', mensaje: MENSAJES.documento };
         }
 
-        // CA3: el código de verificación debe coincidir con el del escenario.
-        if (captcha !== escenario.datos.captchaEsperado) {
+        // CA3: el código de verificación debe coincidir con el de la imagen que se mostró.
+        if (!codigosValidos.includes(captcha)) {
             sesion.errores += 1;
             await sesion.save();
             return { ok: false, campo: 'captcha', mensaje: MENSAJES.captcha };

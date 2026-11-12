@@ -761,3 +761,81 @@ body {
     border-radius: 12px;
     cursor: pointer;
 }
+
+/* ---- Switch Celular / Computadora ---- */
+.switch-modo {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    background: var(--azul-claro);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+}
+
+.switch-opcion {
+    border: none;
+    background: transparent;
+    color: var(--azul-oscuro);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 9px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.switch-opcion.activa {
+    background: var(--azul);
+    color: #fff;
+    box-shadow: var(--sombra);
+}
+
+.barra-superior .switch-modo {
+    display: flex;
+    width: fit-content;
+    margin: 8px auto;
+}
+
+.menu-vista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    margin: 0 0 22px;
+}
+
+.menu-vista-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--texto-suave);
+}
+
+/* ---- Modo "computadora": marco horizontal, ancho de escritorio ---- */
+.app.modo-web {
+    max-width: min(1600px, 96vw);
+}
+
+.app.modo-web .contenido {
+    padding: 16px 20px 96px;
+}
+
+/* La captura es la protagonista: que ocupe todo el ancho disponible. */
+.app.modo-web .pantalla-marco {
+    max-width: 100%;
+}
+
+/* Los textos (resultado, resumen) se mantienen a un ancho cómodo de leer. */
+.app.modo-web .ficha-resultado,
+.app.modo-web .ficha-nota,
+.app.modo-web .resumen,
+.app.modo-web .paso-titulo.centrado,
+.app.modo-web .btn-primario,
+.app.modo-web .btn-secundario {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.app.modo-web .barra-ayuda {
+    max-width: 900px;
+}

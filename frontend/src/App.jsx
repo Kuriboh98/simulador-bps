@@ -10,9 +10,34 @@ import PasoFormulario from './components/PasoFormulario';
 import PasoAgenda from './components/PasoAgenda';
 import PasoResultado from './components/PasoResultado';
 import BarraAyuda from './components/BarraAyuda';
+import SwitchModo from './components/SwitchModo';
+
+function leerModo() {
+    try {
+        return localStorage.getItem('bps-modo') === 'web' ? 'web' : 'movil';
+    } catch {
+        return 'movil';
+    }
+}
+
+function vistaDe(paso, modo) {
+    if (modo !== 'web' || !paso.web) return paso;
+    const web = paso.web;
+    const resultado = { ...paso };
+    if (web.imagenFondo) resultado.imagenFondo = web.imagenFondo;
+    if (web.hotspots) resultado.hotspots = web.hotspots;
+    if (web.boton && paso.boton) resultado.boton = { ...paso.boton, ...web.boton };
+    if (web.pos && paso.campos) {
+        resultado.campos = paso.campos.map((campo) =>
+            web.pos[campo.nombre] ? { ...campo, pos: web.pos[campo.nombre] } : campo
+        );
+    }
+    return resultado;
+}
 
 export default function App() {
     const [estado, setEstado] = useState('intro1');
+    const [modo, setModo] = useState(leerModo);
     const [tramites, setTramites] = useState([]);
     const [tramiteId, setTramiteId] = useState(null);
     const [tramite, setTramite] = useState(null);
@@ -20,6 +45,15 @@ export default function App() {
     const [ordenActual, setOrdenActual] = useState(1);
     const [resultado, setResultado] = useState(null);
     const [errorCarga, setErrorCarga] = useState('');
+
+    function cambiarModo(nuevo) {
+        setModo(nuevo);
+        try {
+            localStorage.setItem('bps-modo', nuevo);
+        } catch {
+            setModo(nuevo);
+        }
+    }
 
     async function abrirMenu() {
         setEstado('cargando');
@@ -73,6 +107,8 @@ export default function App() {
             <MenuTramites
                 tramites={tramites}
                 error={errorCarga}
+                modo={modo}
+                onCambiarModo={cambiarModo}
                 onElegir={elegirTramite}
                 onVolver={() => setEstado('intro2')}
             />
@@ -92,6 +128,7 @@ export default function App() {
     const pasos = tramite.pasos || [];
     const total = pasos.length;
     const paso = pasos.find((p) => p.orden === ordenActual) || pasos[0];
+    const pasoVista = vistaDe(paso, modo);
 
     function volver() {
         if (ordenActual > 1) setOrdenActual(ordenActual - 1);
@@ -103,17 +140,18 @@ export default function App() {
     }
 
     return (
-        <div className="app">
+        <div className={`app modo-${modo}`}>
             <header className="barra-superior">
                 <Banner />
                 <Progreso actual={paso.orden} total={total} onVolver={volver} onSalir={volverAlMenu} />
+                <SwitchModo modo={modo} onCambiar={cambiarModo} />
             </header>
             <main className="contenido">
                 {paso.tipo === 'navegacion' && (
-                    <PasoNavegacion paso={paso} onAvanzar={(destino) => setOrdenActual(destino)} />
+                    <PasoNavegacion paso={pasoVista} onAvanzar={(destino) => setOrdenActual(destino)} />
                 )}
                 {paso.tipo === 'formulario' && (
-                    <PasoFormulario paso={paso} sesionId={sesionId} onExito={avanzarConResultado} />
+                    <PasoFormulario paso={pasoVista} sesionId={sesionId} onExito={avanzarConResultado} />
                 )}
                 {paso.tipo === 'agenda' && (
                     <PasoAgenda paso={paso} sesionId={sesionId} onExito={avanzarConResultado} />

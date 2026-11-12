@@ -2,7 +2,7 @@
 export default function Banner() {
     return (
         <div className="banner" role="note">
-            <span aria-hidden="true">⚠️</span> Esto es una <strong>práctica</strong>. No es la página oficial del BPS.
+            Esto es una <strong>práctica</strong>. No es la página oficial del BPS.
         </div>
     );
 }

@@ -47,6 +47,9 @@ const pasoSchema = new mongoose.Schema(
             { x: Number, y: Number, w: Number, h: Number, etiqueta: String },
             { _id: false }
         ),
+        // Vista alternativa "computadora": misma pantalla del BPS pero en versión web
+        // (captura horizontal y sus propias coordenadas). Si no existe, se usa la de celular.
+        web: mongoose.Schema.Types.Mixed,
     },
     { timestamps: true }
 );

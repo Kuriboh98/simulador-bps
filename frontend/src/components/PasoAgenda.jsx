@@ -22,7 +22,6 @@ export default function PasoAgenda({ paso, sesionId, onExito }) {
                 onExito({
                     siguientePaso: data.siguientePaso,
                     resultado: {
-                        icono: '📅',
                         titulo: '¡Listo! Quedó agendado',
                         campos: [
                             { etiqueta: 'Día', valor: dia },

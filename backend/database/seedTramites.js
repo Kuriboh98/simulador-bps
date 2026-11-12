@@ -28,6 +28,10 @@ const TRAMITES = [
                     'Está en la página de inicio del BPS. Busque la opción que dice Fecha y lugar de cobro, tiene un dibujo de calendario, y tóquela.',
                 imagenFondo: 'paso1-inicio.jpg',
                 hotspots: [{ x: 3, y: 67, w: 92, h: 9, etiqueta: 'Fecha y lugar de cobro', destino: 2 }],
+                web: {
+                    imagenFondo: 'paso1-inicio-web.jpg',
+                    hotspots: [{ x: 61.5, y: 45.8, w: 20, h: 5.5, etiqueta: 'Fecha y lugar de cobro', destino: 2 }],
+                },
             },
             {
                 orden: 2,
@@ -58,6 +62,14 @@ const TRAMITES = [
                     },
                 ],
                 boton: { x: 33, y: 66.5, w: 34, h: 5, etiqueta: 'Consultar' },
+                web: {
+                    imagenFondo: 'paso2-formulario-web.jpg',
+                    pos: {
+                        documento: { x: 50.3, y: 45, w: 7.8, h: 3.9 },
+                        captcha: { x: 44.7, y: 63.8, w: 9.6, h: 2.6 },
+                    },
+                    boton: { x: 46.3, y: 67.8, w: 6.4, h: 3.6 },
+                },
             },
             {
                 orden: 3,
@@ -71,6 +83,7 @@ const TRAMITES = [
         ],
         escenario: {
             captchaEsperado: 'JFNH4',
+            captchaEsperadoWeb: 'TTJ94',
             resultado: {
                 icono: '✅',
                 titulo: '¡Muy bien! Lo logró',
@@ -103,6 +116,10 @@ const TRAMITES = [
                     'En la página de inicio del BPS, busque la opción que dice Trámites y agendas, y tóquela.',
                 imagenFondo: 'paso1-inicio.jpg',
                 hotspots: [{ x: 3, y: 59, w: 92, h: 9, etiqueta: 'Trámites y agendas', destino: 2 }],
+                web: {
+                    imagenFondo: 'paso1-inicio-web.jpg',
+                    hotspots: [{ x: 61.5, y: 39, w: 20, h: 5.5, etiqueta: 'Trámites y agendas', destino: 2 }],
+                },
             },
             {
                 orden: 2,
@@ -156,6 +173,10 @@ const TRAMITES = [
                     'En la página de inicio del BPS, busque la opción que dice Consultar recibos de cobro, y tóquela.',
                 imagenFondo: 'paso1-inicio.jpg',
                 hotspots: [{ x: 3, y: 75, w: 92, h: 9, etiqueta: 'Consultar recibos de cobro', destino: 2 }],
+                web: {
+                    imagenFondo: 'paso1-inicio-web.jpg',
+                    hotspots: [{ x: 61.5, y: 52.5, w: 20, h: 5.5, etiqueta: 'Consultar recibos de cobro', destino: 2 }],
+                },
             },
             {
                 orden: 2,
@@ -186,6 +207,14 @@ const TRAMITES = [
                     },
                 ],
                 boton: { x: 33, y: 66.5, w: 34, h: 5, etiqueta: 'Consultar' },
+                web: {
+                    imagenFondo: 'paso2-formulario-web.jpg',
+                    pos: {
+                        documento: { x: 50.3, y: 45, w: 7.8, h: 3.9 },
+                        captcha: { x: 44.7, y: 63.8, w: 9.6, h: 2.6 },
+                    },
+                    boton: { x: 46.3, y: 67.8, w: 6.4, h: 3.6 },
+                },
             },
             {
                 orden: 3,
@@ -199,6 +228,7 @@ const TRAMITES = [
         ],
         escenario: {
             captchaEsperado: 'JFNH4',
+            captchaEsperadoWeb: 'TTJ94',
             resultado: {
                 icono: '🧾',
                 titulo: 'Recibo de cobro',

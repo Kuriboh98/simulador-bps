@@ -1,4 +1,6 @@
-export default function MenuTramites({ tramites, error, onElegir, onVolver }) {
+import SwitchModo from './SwitchModo';
+
+export default function MenuTramites({ tramites, error, modo, onCambiarModo, onElegir, onVolver }) {
     return (
         <div className="app">
             <main className="menu">
@@ -7,6 +9,11 @@ export default function MenuTramites({ tramites, error, onElegir, onVolver }) {
                 </button>
                 <h1 className="menu-titulo">¿Qué quiere practicar?</h1>
                 <p className="menu-sub">Elija un trámite y lo practicamos paso a paso.</p>
+
+                <div className="menu-vista">
+                    <span className="menu-vista-label">¿Cómo lo quiere ver?</span>
+                    <SwitchModo modo={modo} onCambiar={onCambiarModo} />
+                </div>
 
                 {error && <p className="aviso-error">{error}</p>}
 

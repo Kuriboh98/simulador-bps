@@ -28,7 +28,7 @@ export default function PasoNavegacion({ paso, onAvanzar }) {
 
             {mostrarHint && (
                 <div className="aviso-calmo" role="status">
-                    No pasó nada. Toque el recuadro resaltado 🙂
+                    No pasó nada. Toque el recuadro resaltado.
                 </div>
             )}
         </section>

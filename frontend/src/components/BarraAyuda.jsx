@@ -29,14 +29,14 @@ export default function BarraAyuda({ texto, audio }) {
 
             <div className="barra-ayuda">
                 <button className="btn-barra" onClick={() => setAbierta((a) => !a)}>
-                    ❓ {abierta ? 'Ocultar ayuda' : 'Necesito ayuda'}
+                    {abierta ? 'Ocultar ayuda' : 'Necesito ayuda'}
                 </button>
                 <button
                     className="btn-barra"
                     onClick={() => hablar(audio || texto)}
                     aria-label="Escuchar la ayuda en voz alta"
                 >
-                    🔊 Escuchar
+                    Escuchar
                 </button>
             </div>
         </>
