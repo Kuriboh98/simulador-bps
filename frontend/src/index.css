@@ -598,3 +598,166 @@ body {
     color: var(--azul);
     font-weight: 600;
 }
+
+/* ---- Menú de trámites ---- */
+.menu {
+    flex: 1;
+    padding: 20px 16px 40px;
+}
+
+.menu-volver {
+    margin-bottom: 8px;
+}
+
+.menu-titulo {
+    font-size: 1.6rem;
+    color: var(--azul-oscuro);
+    margin: 4px 0 4px;
+}
+
+.menu-sub {
+    font-size: 1.1rem;
+    color: var(--texto-suave);
+    margin: 0 0 20px;
+}
+
+.menu-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tramite-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    background: var(--blanco);
+    border: 2px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 18px 16px;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+}
+
+.tramite-card:hover {
+    border-color: var(--azul);
+    background: var(--azul-claro);
+}
+
+.tramite-card-texto {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tramite-card-nombre {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+}
+
+.tramite-card-desc {
+    font-size: 1rem;
+    color: var(--texto-suave);
+    line-height: 1.4;
+}
+
+.tramite-card-flecha {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--azul);
+}
+
+/* ---- Paso de agenda (elegir día y hora) ---- */
+.agenda {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.agenda-cabecera {
+    background: var(--azul);
+    color: var(--blanco);
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 14px 16px;
+}
+
+.agenda-cuerpo {
+    padding: 18px 16px;
+}
+
+.agenda-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+    margin: 0 0 10px;
+}
+
+.agenda-opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.opcion-chip {
+    min-height: 52px;
+    flex: 1 1 42%;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--azul-oscuro);
+    background: var(--azul-claro);
+    border: 2px solid var(--borde);
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 10px 8px;
+}
+
+.opcion-chip.sel {
+    background: var(--azul);
+    color: var(--blanco);
+    border-color: var(--azul-oscuro);
+}
+
+.agenda-confirmar {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.agenda-confirmar:disabled {
+    background: #8fa3c4;
+    cursor: default;
+}
+
+/* ---- Nota al pie del resultado (p. ej. constancia) ---- */
+.ficha-nota {
+    background: var(--amarillo);
+    border: 1px solid var(--amarillo-borde);
+    border-radius: var(--radio);
+    padding: 12px 16px;
+    margin: 0 0 18px;
+    font-size: 1rem;
+    color: var(--texto);
+}
+
+/* ---- Botón secundario ---- */
+.btn-secundario {
+    width: 100%;
+    min-height: 54px;
+    margin-top: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--azul);
+    background: var(--blanco);
+    border: 2px solid var(--azul);
+    border-radius: 12px;
+    cursor: pointer;
+}

@@ -102,7 +102,7 @@ const TRAMITES = [
                 ayudaAudio:
                     'En la página de inicio del BPS, busque la opción que dice Trámites y agendas, y tóquela.',
                 imagenFondo: 'paso1-inicio.jpg',
-                hotspots: [{ x: 3, y: 57, w: 92, h: 8, etiqueta: 'Trámites y agendas', destino: 2 }],
+                hotspots: [{ x: 3, y: 59, w: 92, h: 9, etiqueta: 'Trámites y agendas', destino: 2 }],
             },
             {
                 orden: 2,
@@ -140,22 +140,22 @@ const TRAMITES = [
 
     {
         tramite: {
-            nombre: 'Consultar constancia de cobro',
-            descripcion: 'Obtenga una constancia de que cobra su prestación, para presentar donde se la pidan.',
+            nombre: 'Consultar recibo de cobro',
+            descripcion: 'Vea el recibo de lo que cobró, para guardarlo o presentarlo donde se lo pidan.',
             dificultad: 'baja',
         },
         pasos: [
             {
                 orden: 1,
-                titulo: 'Entrar a "Constancia de cobro"',
-                instruccion: 'En la pantalla de inicio del BPS, toque "Constancia de cobro".',
+                titulo: 'Entrar a "Consultar recibos de cobro"',
+                instruccion: 'En la pantalla de inicio del BPS, toque "Consultar recibos de cobro".',
                 tipo: 'navegacion',
                 ayudaTexto:
-                    'Está en la página de inicio del BPS. Busque la opción que dice "Constancia de cobro" y tóquela.',
+                    'Está en la página de inicio del BPS. Busque la opción que dice "Consultar recibos de cobro" y tóquela.',
                 ayudaAudio:
-                    'En la página de inicio del BPS, busque la opción que dice Constancia de cobro, y tóquela.',
+                    'En la página de inicio del BPS, busque la opción que dice Consultar recibos de cobro, y tóquela.',
                 imagenFondo: 'paso1-inicio.jpg',
-                hotspots: [{ x: 3, y: 76, w: 92, h: 8, etiqueta: 'Constancia de cobro', destino: 2 }],
+                hotspots: [{ x: 3, y: 75, w: 92, h: 9, etiqueta: 'Consultar recibos de cobro', destino: 2 }],
             },
             {
                 orden: 2,
@@ -189,26 +189,26 @@ const TRAMITES = [
             },
             {
                 orden: 3,
-                titulo: 'Ver su constancia',
-                instruccion: 'Listo: acá aparece su constancia de cobro.',
+                titulo: 'Ver su recibo',
+                instruccion: 'Listo: acá aparece su recibo de cobro.',
                 tipo: 'resultado',
                 ayudaTexto:
-                    'Esta es la pantalla final. Es su constancia de cobro, que puede presentar donde se la pidan.',
-                ayudaAudio: 'Listo. Esta es su constancia de cobro, que puede presentar donde se la pidan.',
+                    'Esta es la pantalla final. Es su recibo de cobro, que puede guardar o presentar donde se lo pidan.',
+                ayudaAudio: 'Listo. Este es su recibo de cobro, que puede guardar o presentar donde se lo pidan.',
             },
         ],
         escenario: {
             captchaEsperado: 'JFNH4',
             resultado: {
                 icono: '🧾',
-                titulo: 'Constancia de cobro',
+                titulo: 'Recibo de cobro',
                 campos: [
-                    { etiqueta: 'Titular', valor: 'la persona titular de la prestación' },
                     { etiqueta: 'Prestación', valor: 'Jubilación común' },
-                    { etiqueta: 'Situación', valor: 'Al día' },
-                    { etiqueta: 'Válida hasta', valor: '2 de diciembre de 2026' },
+                    { etiqueta: 'Mes', valor: 'Octubre de 2026' },
+                    { etiqueta: 'Importe cobrado', valor: '$ 28.450' },
+                    { etiqueta: 'Cobrado en', valor: 'Abitab' },
                 ],
-                nota: 'Puede presentar esta constancia donde se la pidan.',
+                nota: 'Puede guardar o imprimir su recibo para presentarlo donde se lo pidan.',
             },
         },
     },
