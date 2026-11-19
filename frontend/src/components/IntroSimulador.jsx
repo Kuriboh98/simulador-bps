@@ -1,5 +1,4 @@
-const BPS_TRAMITE_URL =
-    'https://serviciosenlinea.bps.gub.uy/ServiciosEnLineaWeb/contenidosEmbebido?id=8771';
+const BPS_TRAMITE_URL = 'https://serviciosenlinea.bps.gub.uy/ServiciosEnLineaWeb/inicio';
 
 export default function IntroSimulador({ onEmpezar, error }) {
     return (

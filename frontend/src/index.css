@@ -47,6 +47,16 @@ body {
     flex-direction: column;
 }
 
+/* Las pantallas previas al trámite (prototipo, simulador, menú) se ensanchan
+   en pantallas grandes para aprovechar el ancho y no quedar como una columna
+   angosta de celular. La vista de práctica tiene su propio ancho (modo-web). */
+@media (min-width: 720px) {
+    .app:has(.intro),
+    .app:has(.menu) {
+        max-width: 720px;
+    }
+}
+
 /* ---- Barra superior fija (aviso + progreso) ---- */
 .barra-superior {
     position: sticky;
@@ -831,6 +841,7 @@ body {
 .app.modo-web .paso-titulo.centrado,
 .app.modo-web .btn-primario,
 .app.modo-web .btn-secundario {
+    display: block;
     max-width: 760px;
     margin-left: auto;
     margin-right: auto;
