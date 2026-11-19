@@ -47,13 +47,27 @@ body {
     flex-direction: column;
 }
 
-/* Las pantallas previas al trámite (prototipo, simulador, menú) se ensanchan
-   en pantallas grandes para aprovechar el ancho y no quedar como una columna
-   angosta de celular. La vista de práctica tiene su propio ancho (modo-web). */
+/* Las pantallas previas al trámite (prototipo, simulador, menú) ocupan todo el
+   ancho (fondo blanco, sin barras grises); el contenido queda centrado a un
+   ancho cómodo de leer. La vista de práctica tiene su propio ancho (modo-web). */
 @media (min-width: 720px) {
     .app:has(.intro),
     .app:has(.menu) {
-        max-width: 720px;
+        max-width: none;
+    }
+
+    .intro,
+    .menu {
+        width: 100%;
+        max-width: 760px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Centra verticalmente el contenido de las intros para que no quede
+       pegado arriba en pantallas grandes. */
+    .app:has(.intro) .intro {
+        justify-content: center;
     }
 }
 

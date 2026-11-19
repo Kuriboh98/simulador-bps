@@ -1,4 +1,4 @@
-const BPS_TRAMITE_URL = 'https://serviciosenlinea.bps.gub.uy/ServiciosEnLineaWeb/inicio';
+const BPS_TRAMITE_URL = 'https://www.bps.gub.uy/';
 
 export default function IntroSimulador({ onEmpezar, error }) {
     return (
