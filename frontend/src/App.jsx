@@ -116,7 +116,7 @@ export default function App() {
     }
     if (estado === 'cargando') {
         return (
-            <div className="app">
+            <div className={`app modo-${modo}`}>
                 <Banner />
                 <main className="contenido">
                     <p className="cargando">Cargando…</p>

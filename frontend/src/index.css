@@ -822,7 +822,7 @@ body {
 
 /* ---- Modo "computadora": marco horizontal, ancho de escritorio ---- */
 .app.modo-web {
-    max-width: min(1600px, 96vw);
+    max-width: none;
 }
 
 .app.modo-web .contenido {

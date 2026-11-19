@@ -1,8 +1,10 @@
+import Banner from './Banner';
 import SwitchModo from './SwitchModo';
 
 export default function MenuTramites({ tramites, error, modo, onCambiarModo, onElegir, onVolver }) {
     return (
         <div className="app">
+            <Banner />
             <main className="menu">
                 <button className="btn-texto menu-volver" onClick={onVolver}>
                     ← Volver
